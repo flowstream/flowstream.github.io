@@ -80,37 +80,3 @@
 
 </body>
 </html>
-            }
-            while (AutoFarm) {
-                setInterval(AutomateFarm(AutoClickCounter), 1000);
-            }
-        </script>
-    </head>
-<body style='font-size:28px;font-family:Tahoma;color:darkblue;'>
-<center>
-    <table style = 'width:40%;'>
-    <tr>
-        <td align = 'center'>Tap the button!</td>
-        <td align = 'center'></td>
-        <td align = 'center'>Gold</td>
-    </tr>
-    <tr>
-        <td align = 'center'><input type = 'Button' id = 'ButtonFarm' value = 'Farm!' onclick = 'Click();ShowUpgradeButton();ShowAutomateButton();'></td>
-        <td align = 'center'><p style = "display: inline;">Value: </p><p id = 'FarmValue' style = 'display: inline;'>1</p></td>
-        <td align = 'center'><p id = 'Gold'>0</p></td>
-    </tr>
-    <tr>
-        <td align = 'center'><input type = 'Button' id = 'ButtonUpgrade' value = 'Upgrade Farm!' style = 'display: none' onclick = 'Upgrade();'></td>
-        <td align = 'center'><p id = 'PriceTextUpgrade' style = 'display: none;'>Price: </p></td>
-        <td align = 'center'><p id = 'PriceUpgrade' style = 'display: none;'>10</p></td>
-    </tr>
-    <tr>
-        <td align = 'center'><input type = 'Button' id = 'ButtonAutomate' value = 'Automate Farm!' style = 'display: none' onclick = 'Automate();'></td>
-        <td align = 'center'><p id = 'PriceTextAutomate' style = 'display: none;'>Price: </p></td>
-        <td align = 'center'><p id = 'PriceAutomate' style = 'display: none;'>100</p></td>
-    </tr>
-    </table>
-</center>
-
-</body>
-</html>
