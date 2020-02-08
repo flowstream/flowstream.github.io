@@ -1,27 +1,84 @@
-<!DOCTYPE HTML>
 <html>
- <head>
-  <meta charset="utf-8">
-  <title></title>
- </head>
-<body>
-  	<p>Введите радиус круга:</p>
-    <form name="my">
-     <input name="one">
-     <input name="two" type="button" value="Посчитать">
-    </form>
-
-  <script>
-        	const pi = 3.14;
-        	const perfectCircle = radius => pi * radius * radius;
-    // получаем форму
-     let form = document.forms.my; 
-      form.elements.two.onclick = function() {
-        alert('Площадь круга радиусом ' + form.elements.one.value + ' равна ' + perfectCircle(form.elements.one.value));
-      }
-
-  </script>
+    <head>
+        <script>
+            let Gold = 0;
+            let GoldFarmAmount = 1;
+            let UpgradeStartingPrice = 10;
+            let AutomateStartingPrice = 100;
+            let AutoClickCounter = 0;
+            let AutoFarm = false;
+            const Click = () => {
+            Gold += GoldFarmAmount;
+            document.getElementById("Gold").innerText = Gold;
+            }
+            const ShowUpgradeButton = () => {
+                if (Gold >= 10) {
+                    document.getElementById("ButtonUpgrade").style = 'display: block';
+                    document.getElementById("PriceUpgrade").style = 'display: block';  
+                    document.getElementById("PriceTextUpgrade").style = 'display: block';  
+                }              
+            }
+            const ShowAutomateButton = () => {
+                if (Gold >= 100) {
+                    document.getElementById("ButtonAutomate").style = 'display: block';
+                    document.getElementById("PriceAutomate").style = 'display: block';  
+                    document.getElementById("PriceTextAutomate").style = 'display: block';  
+                }              
+            }
+            const Upgrade = () => {
+                if (Gold >= UpgradeStartingPrice) {
+                Gold -= UpgradeStartingPrice;
+                document.getElementById("Gold").innerText = Gold;
+                GoldFarmAmount += 1;
+                document.getElementById("FarmValue").innerText = GoldFarmAmount;
+                UpgradeStartingPrice = Math.round(UpgradeStartingPrice * 1.5);
+                document.getElementById("PriceUpgrade").innerText = UpgradeStartingPrice;  
+                }              
+            }
+            const Automate = () => {
+                if (Gold >= AutomateStartingPrice) {
+                Gold -= AutomateStartingPrice;
+                document.getElementById("Gold").innerText = Gold;   
+                AutomateStartingPrice = Math.round(AutomateStartingPrice * 1.8);
+                document.getElementById("PriceAutomate").innerText = AutomateStartingPrice;             
+                AutoFarm = true;
+                AutoClickCounter += 1;
+                }
+            }
+            const AutomateFarm = (counter) => {
+                Gold += GoldFarmAmount * counter;
+                document.getElementById("Gold").innerText = Gold;
+            }
+            while (AutoFarm) {
+                setInterval(AutomateFarm(AutoClickCounter), 1000);
+            }
+        </script>
+    </head>
+<body style='font-size:28px;font-family:Tahoma;color:darkblue;'>
+<center>
+    <table style = 'width:40%;'>
+    <tr>
+        <td align = 'center'>Tap the button!</td>
+        <td align = 'center'></td>
+        <td align = 'center'>Gold</td>
+    </tr>
+    <tr>
+        <td align = 'center'><input type = 'Button' id = 'ButtonFarm' value = 'Farm!' onclick = 'Click();ShowUpgradeButton();ShowAutomateButton();'></td>
+        <td align = 'center'><p style = "display: inline;">Value: </p><p id = 'FarmValue' style = 'display: inline;'>1</p></td>
+        <td align = 'center'><p id = 'Gold'>0</p></td>
+    </tr>
+    <tr>
+        <td align = 'center'><input type = 'Button' id = 'ButtonUpgrade' value = 'Upgrade Farm!' style = 'display: none' onclick = 'Upgrade();'></td>
+        <td align = 'center'><p id = 'PriceTextUpgrade' style = 'display: none;'>Price: </p></td>
+        <td align = 'center'><p id = 'PriceUpgrade' style = 'display: none;'>10</p></td>
+    </tr>
+    <tr>
+        <td align = 'center'><input type = 'Button' id = 'ButtonAutomate' value = 'Automate Farm!' style = 'display: none' onclick = 'Automate();'></td>
+        <td align = 'center'><p id = 'PriceTextAutomate' style = 'display: none;'>Price: </p></td>
+        <td align = 'center'><p id = 'PriceAutomate' style = 'display: none;'>100</p></td>
+    </tr>
+    </table>
+</center>
 
 </body>
-
 </html>
